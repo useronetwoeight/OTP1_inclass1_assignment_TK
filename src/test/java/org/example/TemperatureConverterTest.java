@@ -42,7 +42,7 @@ class TemperatureConverterTest {
     }
 
     @Test
-    public void testIsExtreme_lowFalse() {
+    public void testIIsExtreme_lowFalse() {
         Assertions.assertFalse(converter.isExtremeTemperature(-40));
     }
 
