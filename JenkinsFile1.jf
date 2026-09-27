@@ -18,7 +18,6 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-
         stage('test') {
             steps{
                 bat 'mvn test'
@@ -39,17 +38,15 @@ pipeline {
                 jacoco()
             }
         }
-
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %IMAGE_NAME%:latest .'
+                bat '"C:\\Users\\tuoma\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t %IMAGE_NAME%:latest .'
             }
         }
-
         stage('Push to Docker Hub') {
             steps {
-                bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
-                bat 'docker push %IMAGE_NAME%:latest'
+                bat '"C:\\Users\\tuoma\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u %DOCKERHUB_CREDENTIALS_USR% -p %DOCKERHUB_CREDENTIALS_PSW%'
+                bat '"C:\\Users\\tuoma\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push %IMAGE_NAME%:latest'
             }
         }
     }
