@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    tools {
+        maven 'meiven'
+    }
+        stages {
+        stage ('check'){
+            steps{
+                git 'https://github.com/useronetwoeight/cal_3012_demo.git'
+            }
+        }
+        stage ('build'){
+            steps{
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('test') {
+            steps{
+                bat 'mvn test'
+            }
+        }
+        stage('Code Coverage') {
+            steps {
+                bat 'mvn jacoco:report'
+            }
+        }
+        stage('Publish Test Results') {
+            steps {
+                junit '**/target/surefire-reports/*.xml'
+            }
+        }
+        stage('jacoco'){
+            steps{
+                jacoco()
+            }
+        }
+
+    }
+}
