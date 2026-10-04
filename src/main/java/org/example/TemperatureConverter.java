@@ -15,6 +15,48 @@ public class TemperatureConverter {
         return kelvin - 273.15;
     }
 
+    public double celsiusToKelvin(double celsius) {
+        return celsius + 273.15;
+    }
+
+    // symbols are "C", "F" and "K"
+    public double convert(double value, String from, String to) {
+        double celsius;
+        if (from.equals("C")) {
+            celsius = value;
+        } else if (from.equals("F")) {
+            celsius = fahrenheitToCelsius(value);
+        } else if (from.equals("K")) {
+            celsius = kelvinToCelsius(value);
+        } else {
+            throw new IllegalArgumentException("Unknown unit: " + from);
+        }
+
+        if (celsius < -273.15) {
+            throw new IllegalArgumentException("Below absolute zero");
+        }
+
+        if (to.equals("C")) {
+            return celsius;
+        } else if (to.equals("F")) {
+            return celsiusToFahrenheit(celsius);
+        } else if (to.equals("K")) {
+            return celsiusToKelvin(celsius);
+        } else {
+            throw new IllegalArgumentException("Unknown unit: " + to);
+        }
+    }
+
+    public double speed(double distanceKm, double timeHours) {
+        if (timeHours <= 0) {
+            throw new IllegalArgumentException("Time must be positive");
+        }
+        if (distanceKm < 0) {
+            throw new IllegalArgumentException("Distance must not be negative");
+        }
+        return distanceKm / timeHours;
+    }
+
     public static void main(String[] args) {
         TemperatureConverter converter = new TemperatureConverter();
 
