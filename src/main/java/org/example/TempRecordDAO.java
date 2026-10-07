@@ -10,7 +10,6 @@ import java.util.List;
 
 public class TempRecordDAO {
 
-    // saves a record and gives back the new id
     public int insert(TempRecord record) throws SQLException {
         Connection conn = DBConnection.get();
         PreparedStatement ps = conn.prepareStatement(
@@ -36,7 +35,6 @@ public class TempRecordDAO {
         return newId;
     }
 
-    // gets all records, the join gives us the unit symbols from the other table
     public List<TempRecord> findAll() throws SQLException {
         List<TempRecord> records = new ArrayList<>();
 
@@ -71,7 +69,6 @@ public class TempRecordDAO {
         return records;
     }
 
-    // true if a row was deleted
     public boolean delete(int id) throws SQLException {
         Connection conn = DBConnection.get();
         PreparedStatement ps = conn.prepareStatement("DELETE FROM temp_record WHERE id = ?");

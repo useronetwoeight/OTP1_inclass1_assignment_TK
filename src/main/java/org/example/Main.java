@@ -29,12 +29,10 @@ public class Main extends Application {
     private ObservableList<TempRecord> rows = FXCollections.observableArrayList();
     private Label status = new Label("");
 
-    // turns the text from a text field into a number, accepts 12,5 and 12.5
     public static double parse(String text) {
         return Double.parseDouble(text.trim().replace(',', '.'));
     }
 
-    // number with two decimals for the table
     public static String fmt(double number) {
         return String.format(Locale.of("fi", "FI"), "%.2f", number);
     }
@@ -44,7 +42,6 @@ public class Main extends Application {
         DBConnection.init();
         List<TemperatureUnit> units = unitDao.findAll();
 
-        // input fields
         TextField valueField = new TextField();
         TextField distanceField = new TextField();
         TextField timeField = new TextField();
@@ -57,8 +54,8 @@ public class Main extends Application {
         toBox.getItems().addAll(units);
         toBox.getSelectionModel().select(1);
 
-        Button saveButton = new Button("Convert & Save");
-        Button deleteButton = new Button("Delete selected");
+        Button saveButton = new Button("Save");
+        Button deleteButton = new Button("Delete");
 
         GridPane form = new GridPane();
         form.setHgap(10);
@@ -98,7 +95,6 @@ public class Main extends Application {
         table.getColumns().add(timeColumn);
         table.getColumns().add(speedColumn);
 
-        // save button: convert, save to database, show in table
         saveButton.setOnAction(e -> {
             try {
                 double value = parse(valueField.getText());
@@ -121,7 +117,6 @@ public class Main extends Application {
             }
         });
 
-        // delete button: removes the selected row
         deleteButton.setOnAction(e -> {
             TempRecord selected = table.getSelectionModel().getSelectedItem();
             if (selected == null) {

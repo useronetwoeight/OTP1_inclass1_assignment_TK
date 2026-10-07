@@ -8,10 +8,8 @@ import java.sql.Statement;
 
 public class DBConnection {
 
-    // where the database file is saved
     private static String url = "jdbc:h2:./data/tempdb";
 
-    // Docker sets DB_URL so the database goes to another folder
     static {
         String fromEnv = System.getenv("DB_URL");
         if (fromEnv != null) {
@@ -45,7 +43,6 @@ public class DBConnection {
                 + "name VARCHAR(30) NOT NULL, "
                 + "symbol VARCHAR(2) NOT NULL)");
 
-        // every record points to two units, from and to
         stmt.execute("CREATE TABLE IF NOT EXISTS temp_record ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY, "
                 + "from_unit_id INT NOT NULL, "
@@ -62,7 +59,6 @@ public class DBConnection {
         conn.close();
     }
 
-    // adds the three units, but only if the table is empty
     private static void insertUnits() throws SQLException {
         Connection conn = get();
         Statement stmt = conn.createStatement();

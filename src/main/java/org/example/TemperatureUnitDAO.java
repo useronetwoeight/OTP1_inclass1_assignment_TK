@@ -28,7 +28,6 @@ public class TemperatureUnitDAO {
         return units;
     }
 
-    // returns null if there is no unit with that symbol
     public TemperatureUnit findBySymbol(String symbol) throws SQLException {
         TemperatureUnit unit = null;
 
@@ -47,7 +46,6 @@ public class TemperatureUnitDAO {
         return unit;
     }
 
-    // returns null if there is no unit with that id
     public TemperatureUnit findById(int id) throws SQLException {
         TemperatureUnit unit = null;
 

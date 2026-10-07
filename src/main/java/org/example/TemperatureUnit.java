@@ -24,7 +24,6 @@ public class TemperatureUnit {
         return symbol;
     }
 
-    // this is what the combo box shows
     public String toString() {
         return name + " (" + symbol + ")";
     }

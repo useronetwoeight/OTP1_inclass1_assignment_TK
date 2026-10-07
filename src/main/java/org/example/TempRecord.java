@@ -13,7 +13,6 @@ public class TempRecord {
     private double timeHours;
     private double speedKmh;
 
-    // used when we read a row from the database
     public TempRecord(int id, int fromUnitId, int toUnitId, String fromSymbol, String toSymbol,
                       double inputValue, double resultValue, double distanceKm,
                       double timeHours, double speedKmh) {
@@ -29,7 +28,6 @@ public class TempRecord {
         this.speedKmh = speedKmh;
     }
 
-    // used when we make a new record, the speed is calculated here
     public TempRecord(int fromUnitId, int toUnitId, double inputValue, double resultValue,
                       double distanceKm, double timeHours) {
         TemperatureConverter converter = new TemperatureConverter();

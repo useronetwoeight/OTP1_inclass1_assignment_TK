@@ -19,7 +19,6 @@ public class TemperatureConverter {
         return celsius + 273.15;
     }
 
-    // symbols are "C", "F" and "K"
     public double convert(double value, String from, String to) {
         double celsius;
         if (from.equals("C")) {
