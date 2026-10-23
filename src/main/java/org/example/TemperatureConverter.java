@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.config.I18n;
+
 public class TemperatureConverter {
     public double fahrenheitToCelsius(double fahrenheit) {
         return (fahrenheit - 32) * 5 / 9;
@@ -28,11 +30,11 @@ public class TemperatureConverter {
         } else if (from.equals("K")) {
             celsius = kelvinToCelsius(value);
         } else {
-            throw new IllegalArgumentException("Unknown unit: " + from);
+            throw new IllegalArgumentException(I18n.t("error.unknownUnit", from));
         }
 
         if (celsius < -273.15) {
-            throw new IllegalArgumentException("Below absolute zero");
+            throw new IllegalArgumentException(I18n.t("error.belowAbsoluteZero"));
         }
 
         if (to.equals("C")) {
@@ -42,16 +44,16 @@ public class TemperatureConverter {
         } else if (to.equals("K")) {
             return celsiusToKelvin(celsius);
         } else {
-            throw new IllegalArgumentException("Unknown unit: " + to);
+            throw new IllegalArgumentException(I18n.t("error.unknownUnit", to));
         }
     }
 
     public double speed(double distanceKm, double timeHours) {
         if (timeHours <= 0) {
-            throw new IllegalArgumentException("Time must be positive");
+            throw new IllegalArgumentException(I18n.t("error.timePositive"));
         }
         if (distanceKm < 0) {
-            throw new IllegalArgumentException("Distance must not be negative");
+            throw new IllegalArgumentException(I18n.t("error.distanceNegative"));
         }
         return distanceKm / timeHours;
     }
