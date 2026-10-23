@@ -31,7 +31,6 @@ public class Main extends Application {
     private ObservableList<TempRecord> rows = FXCollections.observableArrayList();
     private Label status = new Label("");
 
-    // everything that shows text, so the language can be switched at runtime
     private Stage stage;
     private Label languageLabel = new Label();
     private Label temperatureLabel = new Label();
@@ -93,7 +92,6 @@ public class Main extends Application {
         form.addRow(3, timeLabel, timeField);
         form.addRow(4, saveButton, deleteButton);
 
-        // table with the saved records
         idColumn.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getId())));
         fromColumn.setCellValueFactory(data -> new SimpleStringProperty(
                 fmt(data.getValue().getInputValue()) + " " + data.getValue().getFromSymbol()));
@@ -163,7 +161,6 @@ public class Main extends Application {
         stage.show();
     }
 
-    /** Sets every visible text from the current language. */
     private void applyTexts() {
         stage.setTitle(I18n.t("app.title"));
         languageLabel.setText(I18n.t("label.language"));
@@ -183,7 +180,7 @@ public class Main extends Application {
 
         refreshUnitBox(fromBox);
         refreshUnitBox(toBox);
-        table.refresh(); // numbers are re-formatted for the new language
+        table.refresh();
     }
 
     private void refreshUnitBox(ComboBox<TemperatureUnit> box) {
